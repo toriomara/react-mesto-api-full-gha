@@ -1,0 +1,16 @@
+.content {
+  padding: 0 200px 0;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 1070px) {
+  .content {
+    padding: 0 100px 0;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .content {
+    padding: 0 19px 0;
+  }
+}

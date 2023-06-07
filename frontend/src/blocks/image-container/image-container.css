@@ -1,0 +1,8 @@
+.image-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  max-width: 75vw;
+}

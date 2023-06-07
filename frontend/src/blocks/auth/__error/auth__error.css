@@ -1,0 +1,13 @@
+.auth__error {
+  height: 100%;
+  min-height: 286px;
+  margin: 20px auto;
+  color: red;
+}
+
+@media screen and (max-width: 568px) {
+  .auth__error {
+    min-height: 141px;
+    margin: 16px auto;
+  }
+}

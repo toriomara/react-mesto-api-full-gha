@@ -1,0 +1,12 @@
+.image-container__image {
+  /* width: 100%; */
+  /* object-fit: contain; */
+  max-height: 75vh;
+}
+
+@media screen and (max-width: 568px) {
+  .image-container__image {
+    max-width: 240px;
+    max-height: 299px;
+  }
+}

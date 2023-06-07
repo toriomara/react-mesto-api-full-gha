@@ -1,0 +1,18 @@
+.burger-menu {
+  position: fixed;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  /* height: 142px; */
+  height: 42px;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  background: #000;
+  transform: translateY(-100%);
+  transition: all 0.45s ease;
+}
+
+.burger-menu.opened {
+  transform: translate(0);
+}

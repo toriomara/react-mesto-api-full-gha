@@ -1,0 +1,12 @@
+.profile__main {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__main {
+    grid-template-columns: auto;
+    place-self: center;
+  }
+}

@@ -1,0 +1,10 @@
+.card__title {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  max-height: 79px;
+  padding: 0 15px 0 21px;
+  margin: 0;
+}

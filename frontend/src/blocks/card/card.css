@@ -1,0 +1,30 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 282px;
+  min-height: 361px;
+  color: #000;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(198, 196, 205, 1) 56%,
+    rgba(225, 224, 229, 1) 73%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  border-radius: 10px;
+  padding: 0;
+  margin: 0;
+  transition: all 0.4s ease;
+}
+
+.card:hover {
+  scale: 1.05;
+}
+
+.card:hover .card__image {
+  filter: grayscale(100%);
+}

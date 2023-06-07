@@ -1,0 +1,40 @@
+.profile__job {
+  width: 100%;
+  max-width: 500px;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 1280px) {
+  .profile__job {
+    max-width: 320px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .profile__job {
+    max-width: 260px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile__job {
+    max-width: 220px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .profile__job {
+    max-width: 180px;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
+}
