@@ -11,6 +11,10 @@ class Api {
     return fetch(url, options).then(this._getResponse);
   }
 
+  // getToken(jwt) {
+  //   this._headers.authorization = `Bearer ${jwt}`;
+  // }
+
   _getResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }

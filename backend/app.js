@@ -10,7 +10,7 @@ const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes');
 const { DB_URL } = require('./utils/constants');
-const { corsOptions } = require('./middlewares/cors');
+// const { corsOptions } = require('./middlewares/cors');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -22,7 +22,8 @@ const limiter = rateLimit({
 const { PORT = 3000 } = process.env;
 const app = express();
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 app.use(limiter);
 app.use(helmet());
 app.use(express.json());
