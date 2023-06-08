@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.toriomara.nomoredomains.rocks';
+import { BASE_URL } from './constants';
 
 const checkResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
