@@ -5,7 +5,7 @@ export const BurgerMenu = (props) => {
   return (
     <div className={`burger-menu ${isBurgerMenuOpen ? 'opened' : ''}`}>
       <div>{userData.email}</div>
-      <Link to='/sign-in' onClick={onSignOut} className='auth__link'>
+      <Link to='/signin' onClick={onSignOut} className='auth__link'>
         Выйти
       </Link>
     </div>

@@ -19,20 +19,20 @@ export const Header = (props) => {
         <img className='header__logo' src={logo} alt='Лого Mesto' />
       </Link>
       <div className='header__navbar'>
-        {pathname === '/sign-in' && (
-          <Link to='/sign-up' onClick={onSignOut} className='auth__link'>
+        {pathname === '/signin' && (
+          <Link to='/signup' onClick={onSignOut} className='auth__link'>
             Регистрация
           </Link>
         )}
-        {pathname === '/sign-up' && (
-          <Link to='/sign-in' onClick={onSignOut} className='auth__link'>
+        {pathname === '/signup' && (
+          <Link to='/signin' onClick={onSignOut} className='auth__link'>
             Войти
           </Link>
         )}
         {pathname === '/' && (
           <div className='header__user'>
             <div>{userData.email}</div>
-            <Link to='/sign-in' onClick={onSignOut} className='auth__link'>
+            <Link to='/signin' onClick={onSignOut} className='auth__link'>
               Выйти
             </Link>
           </div>

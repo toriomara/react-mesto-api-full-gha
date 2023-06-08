@@ -35,7 +35,7 @@ export const Login = ({ onLogin, errorMessage }) => {
       <div className='auth__signup'>
         <span>
           Не зарегистрированы?&nbsp;
-          <Link to='/sign-up' className='auth__link'>
+          <Link to='/signup' className='auth__link'>
             Регистрация
           </Link>
         </span>

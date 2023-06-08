@@ -6,6 +6,6 @@ export const ProtectedRoute = ({ element: Component, ...props }) => {
   return props.loggedIn ? (
     <Component {...props} />
   ) : (
-    <Navigate to='/sign-in' state={{ returnUrl: pathname }} replace />
+    <Navigate to='/signin' state={{ returnUrl: pathname }} replace />
   );
 };

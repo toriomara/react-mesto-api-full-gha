@@ -35,7 +35,7 @@ export const Register = ({ onRegister, errorMessage }) => {
       <div className='auth__signup'>
         <span>
           Уже зарегистрированы?&nbsp;
-          <Link to='/sign-in' className='auth__link'>
+          <Link to='/signin' className='auth__link'>
             Войти
           </Link>
         </span>

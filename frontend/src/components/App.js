@@ -203,7 +203,7 @@ const App = () => {
       .then(() => {
         setIsInfoTooltipOpen(true);
         setIsRegistered(true);
-        navigate('/sign-in');
+        navigate('/signin');
       })
       .catch((err) => {
         setIsInfoTooltipOpen(true);
@@ -246,7 +246,7 @@ const App = () => {
   const handleSignOut = () => {
     localStorage.removeItem('jwt');
     setLoggedIn(false);
-    navigate('/sign-in');
+    navigate('/signin');
   };
 
   return (
@@ -275,7 +275,7 @@ const App = () => {
             }
           />
           <Route
-            path='/sign-up'
+            path='/signup'
             element={
               <Register
                 onRegister={handleRegister}
@@ -284,7 +284,7 @@ const App = () => {
             }
           />
           <Route
-            path='/sign-in'
+            path='/signin'
             element={
               <Login onLogin={handleLogin} errorMessage={errorMessage} />
             }
@@ -295,7 +295,7 @@ const App = () => {
               loggedIn ? (
                 <Navigate to='/' replace />
               ) : (
-                <Navigate to='/sign-in' replace />
+                <Navigate to='/signin' replace />
               )
             }
           />
