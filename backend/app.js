@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
-const cors = require('cors');
+// const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
@@ -11,6 +11,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes');
 const { DB_URL } = require('./utils/constants');
 // const { corsOptions } = require('./middlewares/cors');
+const cors = require('./middlewares/cors');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -23,7 +24,7 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 // app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors);
 app.use(limiter);
 app.use(helmet());
 app.use(express.json());
