@@ -21,9 +21,20 @@ const limiter = rateLimit({
 const { PORT = 3000 } = process.env;
 const app = express();
 
+const allowed = [
+  'http://localhost:3000',
+  'http://localhost:3001',
+  'https://toriomara.nomoredomains.rocks',
+  'http://toriomara.nomoredomains.rocks',
+]
+
+app.use(cors({
+  origin: allowed,
+  credentials: true
+}));
+
 app.use(limiter);
 app.use(helmet());
-app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
