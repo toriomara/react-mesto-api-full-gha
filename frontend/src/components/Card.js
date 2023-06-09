@@ -9,9 +9,7 @@ export const Card = (props) => {
   const isOwn = card.owner._id === currentUser._id;
   const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
-  const cardLikeButtonClassName = `card__button ${
-    isLiked && 'card__button_active'
-  }`;
+  const cardLikeButtonClassName = `card__button ${isLiked && 'card__button_active'}`;
 
   const handleCardClick = () => {
     onCardClick(card);

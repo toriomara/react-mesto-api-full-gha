@@ -38,13 +38,20 @@ class Api {
     });
   }
 
-  changeLikeCardStatus(card, isLiked) {
+  changeLikeCardStatus(cardId, isLiked) {
     const methodToggle = !isLiked ? 'DELETE' : 'PUT';
-    return this._request(`${this._baseUrl}/cards/likes/${card}`, {
+    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: methodToggle,
       headers: this._headers,
     });
   }
+  // changeLikeCardStatus(cardId, isLiked) {
+  //   const methodToggle = !isLiked ? 'DELETE' : 'PUT';
+  //   return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
+  //     method: methodToggle,
+  //     headers: this._headers,
+  //   });
+  // }
 
   getUserInfo() {
     return this._request(`${this._baseUrl}/users/me`, {
