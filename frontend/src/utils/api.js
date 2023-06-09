@@ -5,19 +5,12 @@ class Api {
     this._headers = headers;
   }
 
-  _request(url) {
-    const options = {
-      credentials: 'include'
-    }
-    return fetch(url, options).then(this._getResponse);
-  }
-
-  // getToken(jwt) {
-  //   this._headers.authorization = `Bearer ${jwt}`;
-  // }
-
   _getResponse(res) {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+  }
+
+  _request(url, options) {
+    return fetch(url, options).then(this._getResponse);
   }
 
   getInitialCards() {
@@ -84,5 +77,6 @@ export const api = new Api({
   baseUrl: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
+    authorization: `Bearer ${localStorage.getItem('jwt')}`
   },
 });

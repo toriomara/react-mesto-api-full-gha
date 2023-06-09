@@ -16,7 +16,6 @@
 
 // module.exports = { corsOptions };
 
-
 const whitelist = [
   'http://localhost:3000',
   'https://toriomara.nomoredomains.rocks',

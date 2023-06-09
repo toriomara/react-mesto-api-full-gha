@@ -17,18 +17,17 @@ import { Login } from './Login';
 import * as mestoAuth from '../utils/mestoAuth';
 import { InfoTooltip } from './InfoTooltip';
 
-// Бургер меню не окончено, ноя хочу его доделать. Просто пока не могу понять как сдвигать всю страницу вниз
-
-// Михаил! Спасибо большое за подсказки по улучшению. Не все успел, а хук useForm не смог сделать (логику
-// понимаю, но пока он не заработал). Прошу прощения за большое количество закомментированного кода (хочу всё
-// же доделать и useForm, и универсальный попап, и валидацию). Не хочу тянуть, чтобы совсем не опаздать со сдачей)
+// https://dev.to/zachsnoek/creating-custom-react-hooks-useform-1gon
+// https://upmostly.com/tutorials/using-custom-react-hooks-simplify-forms
+// Бургер меню не окончено, адо доделать. Не могу понять как сдвигать всю страницу вниз.
+// Хук useForm не смог сделать (логику понимаю, но пока он не заработал).
+// Также доделать универсальный попап, и валидацию. Всё это найдешь в ревью спринта 12.
 
 const App = () => {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] =
-    useState(false);
+  const [isConfirmDeletePopupOpen, setIsConfirmDeletePopupOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
@@ -191,11 +190,11 @@ const App = () => {
 
   useEffect(() => {
     checkToken();
-  }, []);
+  }, [loggedIn]);
 
   // useEffect(() => {
   //   localStorage.setItem('jwt', checkToken);
-  // }, [userData]);
+  // }, []);
 
   const handleRegister = (email, password) => {
     mestoAuth
