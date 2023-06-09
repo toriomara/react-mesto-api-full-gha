@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const crashTestRouter = require('../utils/crashTest');
 const userRouter = require('./users');
 const cardRouter = require('./cards');
 const { MESSAGES } = require('../utils/constants');
@@ -9,6 +10,8 @@ const {
   validateSignin,
 } = require('../utils/validation');
 const { createUser, login } = require('../controllers/users');
+
+router.use('/', crashTestRouter);
 
 router.post('/signup', validateSignup, createUser);
 router.post('/signin', validateSignin, login);

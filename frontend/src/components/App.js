@@ -171,8 +171,8 @@ const App = () => {
       mestoAuth
         .getToken(token)
         .then((res) => {
-          if (res.data.email) {
-            setUserData(res.data.email);
+          if (res.email) {
+            setUserData(res.email);
             setLoggedIn(true);
             navigate('/');
           }
