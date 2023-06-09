@@ -5,7 +5,11 @@ const {
 const { MESSAGES, STATUS_CODES } = require('../utils/constants');
 
 const getCards = (req, res, next) => {
-  Card.find({}).populate(['owner', 'likes']).then((cards) => res.status(STATUS_CODES.OK).send(cards.reverse())).catch(next);
+  Card.find({})
+    .populate(['owner', 'likes'])
+    .then((cards) => res.status(STATUS_CODES.OK)
+      .send(cards.reverse()))
+    .catch(next);
 };
 
 const createCard = (req, res, next) => {
@@ -44,6 +48,7 @@ const likeCard = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         return next(new NotFoundError(MESSAGES.NOT_FOUND));
@@ -64,6 +69,7 @@ const dislikeCard = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         return next(new NotFoundError(MESSAGES.NOT_FOUND));
