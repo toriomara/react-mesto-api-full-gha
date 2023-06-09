@@ -10,7 +10,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.3.24
+IP 158.160.3.24
 
 Frontend https://toriomara.nomoredomains.rocks
 
