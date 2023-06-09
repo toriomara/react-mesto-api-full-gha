@@ -38,9 +38,9 @@ class Api {
     });
   }
 
-  changeLikeCardStatus(cardId, isLiked) {
+  changeLikeCardStatus(card, isLiked) {
     const methodToggle = !isLiked ? 'DELETE' : 'PUT';
-    return this._request(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return this._request(`${this._baseUrl}/cards/likes/${card}`, {
       method: methodToggle,
       headers: this._headers,
     });
