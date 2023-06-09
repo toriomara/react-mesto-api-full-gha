@@ -173,6 +173,8 @@ const App = () => {
         .then((res) => {
           if (res.email) {
             setUserData(res.email);
+          // if (res.data.email) {
+          //   setUserData(res.data.email);
             setLoggedIn(true);
             navigate('/');
           }
@@ -232,7 +234,8 @@ const App = () => {
         if (err === 'Ошибка: 400') {
           setErrorMessage('Не заполнены почта и/или пароль');
         } else if (err === 'Ошибка: 401') {
-          setErrorMessage('Пользователь с таким email не найден');
+          // setErrorMessage('Пользователь с таким email не найден');
+          setErrorMessage('Неверный email или пароль');
         }
       })
       .finally(() => {
