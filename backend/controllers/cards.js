@@ -5,7 +5,7 @@ const {
 const { MESSAGES, STATUS_CODES } = require('../utils/constants');
 
 const getCards = (req, res, next) => {
-  Card.find({}).then((cards) => res.status(STATUS_CODES.OK).send(cards.reverse())).catch(next);
+  Card.find({}).populate(['owner', 'likes']).then((cards) => res.status(STATUS_CODES.OK).send(cards.reverse())).catch(next);
 };
 
 const createCard = (req, res, next) => {
