@@ -77,6 +77,6 @@ export const api = new Api({
   baseUrl: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
-    authorization: `Bearer ${localStorage.getItem('jwt')}`
+    Authorization: `Bearer ${localStorage.getItem('jwt')}`
   },
 });
