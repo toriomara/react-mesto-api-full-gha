@@ -21,6 +21,8 @@ const whitelist = [
   'https://toriomara.nomoredomains.rocks',
   'http://toriomara.nomoredomains.rocks',
   'https://api.toriomara.nomoredomains.rocks',
+  'https://api.toriomara.nomoredomains.rocks/users/me',
+  'https://api.toriomara.nomoredomains.rocks/cards',
   'http://api.toriomara.nomoredomains.rocks',
 ];
 
