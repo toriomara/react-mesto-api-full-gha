@@ -7,8 +7,7 @@ const { MESSAGES, STATUS_CODES } = require('../utils/constants');
 const getCards = (req, res, next) => {
   Card.find({})
     .populate(['owner', 'likes'])
-    .then((cards) => res.status(STATUS_CODES.OK)
-      .send(cards.reverse()))
+    .then((cards) => res.send(cards.reverse()))
     .catch(next);
 };
 
@@ -37,7 +36,7 @@ const deleteCardById = (req, res, next) => {
       }
       return card
         .deleteOne({ _id: card._id })
-        .then(() => res.status(STATUS_CODES.OK).send({ message: 'Карточка удалена' }));
+        .then(() => res.send({ message: 'Карточка удалена' }));
     })
     .catch(next);
 };
@@ -53,7 +52,7 @@ const likeCard = (req, res, next) => {
       if (!card) {
         return next(new NotFoundError(MESSAGES.NOT_FOUND));
       }
-      return res.status(STATUS_CODES.OK).send(card);
+      return res.send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
