@@ -170,11 +170,9 @@ const App = () => {
     mestoAuth
     .getToken(token)
     .then((res) => {
-      if (res.email) {
         setUserData(res.email);
         setLoggedIn(true);
         navigate('/');
-      }
     })
     .catch((err) => {
       if (err === 400) {
@@ -184,7 +182,7 @@ const App = () => {
         console.log('Некорректный токен');
       }
     });
-  },[])
+  }, [loggedIn] )
 
   // const checkToken = () => {
   //   const token = localStorage.getItem('jwt');
@@ -239,10 +237,12 @@ const App = () => {
     mestoAuth
       .authorize(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
-        setLoggedIn(true);
-        setUserData(res.email);
-        navigate('/');
+        if (res.token) {
+          localStorage.setItem('jwt', res.token);
+          setLoggedIn(true);
+          setUserData(res.email);
+          navigate('/');
+        }
       })
       .catch((err) => {
         setLoggedIn(false);
