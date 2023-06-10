@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BurgerMenu } from './BurgerMenu';
 import logo from '../images/logo.svg';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export const Header = (props) => {
   const { onSignOut, userData } = props;
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const { pathname } = useLocation();
 
-  const handleBurgerMenu = () => {
-    setIsBurgerMenuOpen(!isBurgerMenuOpen);
-    console.log('Click');
-  };
+  const handleBurgerMenu = () => {setIsBurgerMenuOpen(!isBurgerMenuOpen)};
+  const currentUser = useContext(CurrentUserContext)
+
 
   return (
     <header className='header'>
@@ -31,7 +31,7 @@ export const Header = (props) => {
         )}
         {pathname === '/' && (
           <div className='header__user'>
-            <div>{userData.email}</div>
+            <div>{currentUser?.email}</div>
             <Link to='/signin' onClick={onSignOut} className='auth__link'>
               Выйти
             </Link>

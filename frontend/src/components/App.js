@@ -165,37 +165,52 @@ const App = () => {
   const [userData, setUserData] = useState({ email: '' });
   const [errorMessage, setErrorMessage] = useState('');
 
-  const checkToken = () => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      mestoAuth
-        .getToken(token)
-        .then((res) => {
-          if (res.email) {
-            setUserData(res.email);
-          // if (res.data.email) {
-          //   setUserData(res.data.email);
-            setLoggedIn(true);
-            navigate('/');
-          }
-        })
-        .catch((err) => {
-          if (err === 400) {
-            console.log('При передаче токена произошла ошибка');
-          }
-          if (err === 401) {
-            console.log('Некорректный токен');
-          }
-        });
-    }
-  };
-
   useEffect(() => {
-    checkToken();
-  }, [loggedIn]);
+    const token = localStorage.getItem('jwt');
+    mestoAuth
+    .getToken(token)
+    .then((res) => {
+      if (res.email) {
+        setUserData(res.email);
+        setLoggedIn(true);
+        navigate('/');
+      }
+    })
+    .catch((err) => {
+      if (err === 400) {
+        console.log('При передаче токена произошла ошибка');
+      }
+      if (err === 401) {
+        console.log('Некорректный токен');
+      }
+    });
+  },[])
+
+  // const checkToken = () => {
+  //   const token = localStorage.getItem('jwt');
+  //   if (token) {
+  //     mestoAuth
+  //       .getToken(token)
+  //       .then((res) => {
+  //         if (res.email) {
+  //           setUserData(res.email);
+  //           setLoggedIn(true);
+  //           navigate('/');
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         if (err === 400) {
+  //           console.log('При передаче токена произошла ошибка');
+  //         }
+  //         if (err === 401) {
+  //           console.log('Некорректный токен');
+  //         }
+  //       });
+  //   }
+  // };
 
   // useEffect(() => {
-  //   localStorage.setItem('jwt', checkToken);
+  //   mestoAuth.
   // }, []);
 
   const handleRegister = (email, password) => {
@@ -223,10 +238,10 @@ const App = () => {
   const handleLogin = (email, password) => {
     mestoAuth
       .authorize(email, password)
-      .then((data) => {
-        localStorage.setItem('jwt', data.token);
+      .then((res) => {
+        localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
-        setUserData({ email });
+        setUserData(res.email);
         navigate('/');
       })
       .catch((err) => {
@@ -234,7 +249,6 @@ const App = () => {
         if (err === 'Ошибка: 400') {
           setErrorMessage('Не заполнены почта и/или пароль');
         } else if (err === 'Ошибка: 401') {
-          // setErrorMessage('Пользователь с таким email не найден');
           setErrorMessage('Неверный email или пароль');
         }
       })
