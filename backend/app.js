@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
 const cookieParser = require('cookie-parser');
-// const cors = require('./middlewares/cors');
+const cors = require('./middlewares/cors');
 // const cors = require('cors');
 // const { corsOptions } = require('./middlewares/cors');
 const limiter = require('./utils/limiter');
@@ -18,8 +18,8 @@ const app = express();
 
 // app.use(cors(corsOptions));
 app.use(requestLogger);
-app.use('/middlewares/cors', require('./middlewares/cors'));
-
+app.use(cors);
+// app.use('/middlewares/cors', require('./middlewares/cors'));
 app.use(limiter);
 app.use(helmet());
 app.use(express.json());

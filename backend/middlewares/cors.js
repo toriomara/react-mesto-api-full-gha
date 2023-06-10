@@ -24,7 +24,7 @@ const whitelist = [
   'http://api.toriomara.nomoredomains.rocks',
 ];
 
-module.exports = (req, res, next) => {
+const cors = (req, res, next) => {
   // Сохраняем источник запроса в переменную origin
   const { origin } = req.headers;
   // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
@@ -49,3 +49,5 @@ module.exports = (req, res, next) => {
 
   return next();
 };
+
+module.exports = cors;

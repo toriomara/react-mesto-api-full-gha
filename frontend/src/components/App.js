@@ -19,6 +19,7 @@ import { InfoTooltip } from './InfoTooltip';
 
 // https://dev.to/zachsnoek/creating-custom-react-hooks-useform-1gon
 // https://upmostly.com/tutorials/using-custom-react-hooks-simplify-forms
+// https://www.youtube.com/watch?v=hANR2XbB9co
 // Бургер меню не окончено, адо доделать. Не могу понять как сдвигать всю страницу вниз.
 // Хук useForm не смог сделать (логику понимаю, но пока он не заработал).
 // Также доделать универсальный попап, и валидацию. Всё это найдешь в ревью спринта 12.
