@@ -165,51 +165,32 @@ const App = () => {
   const [userData, setUserData] = useState({ email: '' });
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
+  const checkToken = () => {
     const token = localStorage.getItem('jwt');
-    mestoAuth
-    .getToken(token)
-    .then((res) => {
-        setUserData(res.email);
-        setLoggedIn(true);
-        navigate('/');
-    })
-    .catch((err) => {
-      if (err === 400) {
-        console.log('При передаче токена произошла ошибка');
-      }
-      if (err === 401) {
-        console.log('Некорректный токен');
-      }
-    });
-  }, [loggedIn] )
+    if (token) {
+      mestoAuth
+        .getToken(token)
+        .then((res) => {
+          if (res.email) {
+            setUserData(res.email);
+            setLoggedIn(true);
+            navigate('/');
+          }
+        })
+        .catch((err) => {
+          if (err === 400) {
+            console.log('При передаче токена произошла ошибка');
+          }
+          if (err === 401) {
+            console.log('Некорректный токен');
+          }
+        });
+    }
+  };
 
-  // const checkToken = () => {
-  //   const token = localStorage.getItem('jwt');
-  //   if (token) {
-  //     mestoAuth
-  //       .getToken(token)
-  //       .then((res) => {
-  //         if (res.email) {
-  //           setUserData(res.email);
-  //           setLoggedIn(true);
-  //           navigate('/');
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         if (err === 400) {
-  //           console.log('При передаче токена произошла ошибка');
-  //         }
-  //         if (err === 401) {
-  //           console.log('Некорректный токен');
-  //         }
-  //       });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   mestoAuth.
-  // }, []);
+  useEffect(() => {
+    checkToken();
+  }, [loggedIn]);
 
   const handleRegister = (email, password) => {
     mestoAuth
@@ -237,12 +218,10 @@ const App = () => {
     mestoAuth
       .authorize(email, password)
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem('jwt', res.token);
-          setLoggedIn(true);
-          setUserData(res.email);
-          navigate('/');
-        }
+        localStorage.setItem('jwt', res.token);
+        setLoggedIn(true);
+        setUserData(res.email);
+        navigate('/');
       })
       .catch((err) => {
         setLoggedIn(false);
