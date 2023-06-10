@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BurgerMenu } from './BurgerMenu';
-import logo from '../images/logo.svg';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import logo from '../images/logo.svg';
 
 export const Header = (props) => {
   const { onSignOut, userData } = props;
@@ -11,7 +11,6 @@ export const Header = (props) => {
 
   const handleBurgerMenu = () => {setIsBurgerMenuOpen(!isBurgerMenuOpen)};
   const currentUser = useContext(CurrentUserContext)
-
 
   return (
     <header className='header'>
