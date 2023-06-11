@@ -157,6 +157,10 @@ const App = () => {
   const [userData, setUserData] = useState({ email: '' });
   const [errorMessage, setErrorMessage] = useState('');
 
+  useEffect(() => {
+    checkToken();
+  }, []);
+
   const checkToken = () => {
     const token = localStorage.getItem('jwt');
     if (token) {
@@ -166,7 +170,7 @@ const App = () => {
           if (res.email) {
             setUserData(res.email);
             setLoggedIn(true);
-            navigate('/');
+            navigate('/', {replace: true});
           }
         })
         .catch((err) => {
@@ -181,7 +185,14 @@ const App = () => {
   };
 
   useEffect(() => {
-    checkToken();
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([userData, cards]) => {
+        setCurrentUser(userData);
+        setCards(cards);
+      })
+      .catch((err) => console.log(`Ошибка: ${err}`));
+    }
   }, [loggedIn]);
 
   const handleRegister = (email, password) => {
@@ -210,10 +221,12 @@ const App = () => {
     mestoAuth
       .authorize(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
-        setLoggedIn(true);
-        setUserData(res.email);
-        navigate('/');
+        if (res.token) {
+          localStorage.setItem('jwt', res.token);
+          setLoggedIn(true);
+          setUserData(res.email);
+          navigate('/');
+        }
       })
       .catch((err) => {
         setLoggedIn(false);
@@ -235,15 +248,6 @@ const App = () => {
     setLoggedIn(false);
     navigate('/signin');
   };
-
-  useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cards]) => {
-        setCurrentUser(userData);
-        setCards(cards);
-      })
-      .catch((err) => console.log(`Ошибка: ${err}`));
-  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
