@@ -157,10 +157,6 @@ const App = () => {
   const [userData, setUserData] = useState({ email: '' });
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-    checkToken();
-  }, []);
-
   const checkToken = () => {
     const token = localStorage.getItem('jwt');
     if (token) {
@@ -183,6 +179,10 @@ const App = () => {
         });
     }
   };
+
+  useEffect(() => {
+    checkToken()
+  }, []);
 
   useEffect(() => {
     if (loggedIn) {

@@ -16,7 +16,7 @@ const createCard = (req, res, next) => {
   const owner = req.user._id;
   Card.create({ name, link, owner })
     .then((card) => {
-      res.status(STATUS_CODES.CREATED).send(card);
+      card.populate('owner').then(() => res.status(STATUS_CODES.CREATED).send(card));
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -25,6 +25,20 @@ const createCard = (req, res, next) => {
       return next(err);
     });
 };
+// const createCard = (req, res, next) => {
+//   const { name, link } = req.body;
+//   const owner = req.user._id;
+//   Card.create({ name, link, owner })
+//     .then((card) => {
+//       res.status(STATUS_CODES.CREATED).send(card);
+//     })
+//     .catch((err) => {
+//       if (err.name === 'ValidationError') {
+//         return next(new BadRequestError(`${MESSAGES.BAD_REQUEST} при создании карточки`));
+//       }
+//       return next(err);
+//     });
+// };
 
 const deleteCardById = (req, res, next) => {
   const { cardId } = req.params;
